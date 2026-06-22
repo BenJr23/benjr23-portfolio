@@ -4,11 +4,18 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, Monitor, Smartphone, Layout as LayoutIcon } from "lucide-react";
 import { mockProjects, mockFrameworks, ProjectType } from "../lib/mock";
 
-export function Projects() {
-  const [filter, setFilter] = useState<ProjectType | "ALL">("ALL");
-  const filteredProjects = mockProjects.filter((p) => filter === "ALL" || p.type === filter);
+interface ProjectsProps {
+  projects?: any[];
+  frameworks?: any[];
+}
 
-  const getTypeIcon = (type: ProjectType) => {
+export function Projects({ projects, frameworks }: ProjectsProps) {
+  const [filter, setFilter] = useState<ProjectType | "ALL">("ALL");
+  const data = projects ?? mockProjects;
+  const frameworksList = frameworks ?? mockFrameworks;
+  const filteredProjects = data.filter((p: any) => filter === "ALL" || p.type === filter);
+
+  const getTypeIcon = (type: string | ProjectType) => {
     switch (type) {
       case ProjectType.WEB_APPLICATION:
         return <Monitor className="w-4 h-4" />;
@@ -19,8 +26,8 @@ export function Projects() {
     }
   };
 
-  const formatTypeLabel = (type: ProjectType) => {
-    return type.split("_").map((w) => w.charAt(0) + w.slice(1).toLowerCase()).join(" ");
+  const formatTypeLabel = (type: string | ProjectType) => {
+    return String(type).split("_").map((w) => w.charAt(0) + w.slice(1).toLowerCase()).join(" ");
   };
 
   return (
@@ -61,8 +68,8 @@ export function Projects() {
 
       <motion.div layout className="grid md:grid-cols-2 gap-6">
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project) => {
-            const framework = mockFrameworks.find((f) => f.id === project.frameworkId);
+          {filteredProjects.map((project: any) => {
+            const framework = frameworksList.find((f: any) => f.id === project.frameworkId) || project.framework;
             return (
               <motion.article
                 key={project.id}
@@ -119,9 +126,9 @@ export function Projects() {
                   <p className="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">{project.description}</p>
 
                   <div className="space-y-4 mt-auto">
-                    {project.roles.length > 0 && (
+                    {(project.roles ?? []).length > 0 && (
                       <div className="flex flex-wrap gap-2">
-                        {project.roles.map((role) => (
+                        {(project.roles ?? []).map((role: string) => (
                           <span key={role} className="text-xs font-medium text-indigo-400 bg-indigo-500/10 px-2 py-1 rounded-md">
                             {role}
                           </span>
