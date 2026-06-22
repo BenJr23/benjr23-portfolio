@@ -24,33 +24,33 @@ export function Home({ user }: { user?: User | null }) {
             Available for new opportunities
           </div>
 
-              <div className="space-y-6">
-                <div>
-                  <h1 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight mb-6 leading-tight">
-                    Hi, I&apos;m {displayUser.name.split(" ")[0]} {displayUser.name.split(" ")[1]} <br className="hidden md:block" />
-                    <span className="text-zinc-500">I build digital experiences.</span>
-                  </h1>
-                </div>
+          <div className="space-y-6">
+            <div>
+              <h1 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight mb-6 leading-tight">
+                Hi, I&apos;m {displayUser.name.split(" ")[0]} {displayUser.name.split(" ")[1]} <br className="hidden md:block" />
+                <span className="text-zinc-500">I build digital experiences.</span>
+              </h1>
+            </div>
 
-                <div>
-                  <p className="text-base md:text-lg text-zinc-400 leading-relaxed mb-6">
-                    {displayUser.description}
-                  </p>
+            <div>
+              <p className="text-base md:text-lg text-zinc-400 leading-relaxed mb-6">
+                {displayUser.description}
+              </p>
 
-                  <div className="flex flex-wrap items-center gap-6 text-zinc-400 text-sm">
-                    {displayUser.address && (
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4" />
-                        {displayUser.address}
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2">
-                      <Mail className="w-4 h-4" />
-                      {displayUser.email}
-                    </div>
+              <div className="flex flex-wrap items-center gap-6 text-zinc-400 text-sm">
+                {displayUser.address && (
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    {displayUser.address}
                   </div>
+                )}
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  {displayUser.email}
                 </div>
               </div>
+            </div>
+          </div>
         </motion.div>
       </section>
 
@@ -60,27 +60,27 @@ export function Home({ user }: { user?: User | null }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="grid gap-4 grid-cols-1 md:grid-cols-[minmax(300px,420px)_minmax(360px,420px)] items-start"
+            className="grid gap-4 grid-cols-1 md:grid-cols-[minmax(300px,420px)_1fr]"
           >
-            {/* Large Image */}
-            <div className="relative overflow-hidden rounded-2xl glass-card h-[280px] md:h-[400px]">
+            {/* Featured Image */}
+            <div className="relative h-[280px] md:h-[400px] overflow-hidden rounded-2xl glass-card">
               <img
                 src={displayUser.photos[0]}
-                alt="In action 1"
+                alt="Featured"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
 
-            {/* Small Images */}
-            <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[280px] md:h-[400px]">
-              {displayUser.photos.slice(1, 5).map((photo, idx) => (
+            {/* Remaining Images */}
+            <div className="grid h-[280px] md:h-[400px] grid-cols-2 auto-rows-fr gap-4 overflow-auto pr-1">
+              {displayUser.photos.slice(1).map((photo, idx) => (
                 <div
-                  key={`small-${idx}`}
-                  className="relative overflow-hidden rounded-2xl glass-card h-full"
+                  key={idx}
+                  className="relative h-full overflow-hidden rounded-2xl glass-card"
                 >
                   <img
                     src={photo}
-                    alt={`In action ${idx + 2}`}
+                    alt={`Photo ${idx + 2}`}
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
