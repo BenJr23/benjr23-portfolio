@@ -60,43 +60,29 @@ export function Home({ user }: { user?: User | null }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="grid gap-4 md:grid-cols-[minmax(280px,340px)_minmax(200px,1fr)_minmax(200px,1fr)]"
+            className="grid gap-4 grid-cols-1 md:grid-cols-[minmax(300px,420px)_minmax(360px,420px)] items-start"
           >
-            <div className="relative rounded-2xl overflow-hidden glass-card h-[400px] md:h-[560px]">
+            {/* Large Image */}
+            <div className="relative overflow-hidden rounded-2xl glass-card h-[280px] md:h-[400px]">
               <img
                 src={displayUser.photos[0]}
                 alt="In action 1"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-luxe-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <div className="grid gap-4">
-              {displayUser.photos.slice(1, 3).map((photo, idx) => (
+
+            {/* Small Images */}
+            <div className="grid grid-cols-2 grid-rows-2 gap-4 h-[280px] md:h-[400px]">
+              {displayUser.photos.slice(1, 5).map((photo, idx) => (
                 <div
-                  key={`left-${idx}`}
-                  className="relative rounded-2xl overflow-hidden glass-card h-[180px] md:h-[268px]"
+                  key={`small-${idx}`}
+                  className="relative overflow-hidden rounded-2xl glass-card h-full"
                 >
                   <img
                     src={photo}
                     alt={`In action ${idx + 2}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxe-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              ))}
-            </div>
-            <div className="grid gap-4">
-              {displayUser.photos.slice(3, 5).map((photo, idx) => (
-                <div
-                  key={`right-${idx}`}
-                  className="relative rounded-2xl overflow-hidden glass-card h-[180px] md:h-[268px]"
-                >
-                  <img
-                    src={photo}
-                    alt={`In action ${idx + 4}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-luxe-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               ))}
             </div>
