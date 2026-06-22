@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { MapPin, Mail, ArrowRight } from "lucide-react";
 import { mockUser } from "../lib/mock";
+import type { User } from "../lib/mock";
 
-export function Home() {
+export function Home({ user }: { user?: User | null }) {
+  const displayUser = user ?? mockUser;
   return (
     <div className="space-y-20">
       <section className="pt-10 md:pt-20">
@@ -23,30 +25,30 @@ export function Home() {
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight mb-6 leading-tight">
-            Hi, I&apos;m {mockUser.name.split(" ")[0]}. <br className="hidden md:block" />
+            Hi, I&apos;m {displayUser.name.split(" ")[0]}. <br className="hidden md:block" />
             <span className="text-zinc-500">I build digital experiences.</span>
           </h1>
 
           <p className="text-lg md:text-xl text-zinc-400 leading-relaxed mb-8 max-w-2xl">
-            {mockUser.description}
+            {displayUser.description}
           </p>
 
           <div className="flex flex-wrap items-center gap-6 text-zinc-400 text-sm">
-            {mockUser.address && (
+            {displayUser.address && (
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
-                {mockUser.address}
+                {displayUser.address}
               </div>
             )}
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4" />
-              {mockUser.email}
+              {displayUser.email}
             </div>
           </div>
         </motion.div>
       </section>
 
-      {mockUser.photos.length > 0 && (
+      {displayUser.photos.length > 0 && (
         <section>
           <motion.div
             initial={{ opacity: 0 }}
@@ -54,7 +56,7 @@ export function Home() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4"
           >
-            {mockUser.photos.map((photo, idx) => (
+            {displayUser.photos.map((photo, idx) => (
               <div
                 key={idx}
                 className={`relative rounded-2xl overflow-hidden glass-card group ${
