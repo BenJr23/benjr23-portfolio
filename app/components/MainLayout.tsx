@@ -115,13 +115,13 @@ export function MainLayout({
         </div>
       </header>
 
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-panel pb-24">
-        <div className="flex items-center justify-around p-3">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-panel">
+        <div className="flex items-center justify-around px-3 py-2">
           {navItems.map((item) => (
             <Link
               key={item.path}
               href={item.path}
-              className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-colors ${
+              className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-colors ${
                 isActive(item.path) ? "text-indigo-400 bg-indigo-500/10" : "text-zinc-400"
               }`}
             >
