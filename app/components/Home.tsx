@@ -14,7 +14,7 @@ export function Home({ user }: { user?: User | null }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-3xl"
+          className="w-full"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-sm font-medium mb-6">
             <span className="relative flex h-2 w-2">
@@ -24,27 +24,33 @@ export function Home({ user }: { user?: User | null }) {
             Available for new opportunities
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight mb-6 leading-tight">
-            Hi, I&apos;m {displayUser.name.split(" ")[0]}. <br className="hidden md:block" />
-            <span className="text-zinc-500">I build digital experiences.</span>
-          </h1>
+              <div className="space-y-6">
+                <div>
+                  <h1 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight mb-6 leading-tight">
+                    Hi, I&apos;m {displayUser.name.split(" ")[0]}. <br className="hidden md:block" />
+                    <span className="text-zinc-500">I build digital experiences.</span>
+                  </h1>
+                </div>
 
-          <p className="text-lg md:text-xl text-zinc-400 leading-relaxed mb-8 max-w-2xl">
-            {displayUser.description}
-          </p>
+                <div>
+                  <p className="text-base md:text-lg text-zinc-400 leading-relaxed mb-6">
+                    {displayUser.description}
+                  </p>
 
-          <div className="flex flex-wrap items-center gap-6 text-zinc-400 text-sm">
-            {displayUser.address && (
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4" />
-                {displayUser.address}
+                  <div className="flex flex-wrap items-center gap-6 text-zinc-400 text-sm">
+                    {displayUser.address && (
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4" />
+                        {displayUser.address}
+                      </div>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-4 h-4" />
+                      {displayUser.email}
+                    </div>
+                  </div>
+                </div>
               </div>
-            )}
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4" />
-              {displayUser.email}
-            </div>
-          </div>
         </motion.div>
       </section>
 

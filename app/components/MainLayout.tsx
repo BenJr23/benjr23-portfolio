@@ -13,6 +13,7 @@ import {
   Linkedin,
 } from "lucide-react";
 import { mockUser } from "../lib/mock";
+import type { User } from "../lib/mock";
 
 const navItems = [
   { path: "/", label: "Home", icon: HomeIcon },
@@ -23,7 +24,14 @@ const navItems = [
   { path: "/certifications", label: "Certifications", icon: Award },
 ];
 
-export function MainLayout({ children }: { children: React.ReactNode }) {
+export function MainLayout({
+  children,
+  user,
+}: {
+  children: React.ReactNode;
+  user?: User | null;
+}) {
+  const displayUser = user ?? mockUser;
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
@@ -31,22 +39,22 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="fixed top-0 left-0 right-0 z-50 glass-panel">
-        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="mx-auto w-full max-w-7xl px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full overflow-hidden border border-luxe-800">
-              {mockUser.image ? (
+              {displayUser.image ? (
                 <img
-                  src={mockUser.image}
-                  alt={mockUser.name}
+                  src={displayUser.image}
+                  alt={displayUser.name}
                   className="w-full h-full object-cover"
                 />
               ) : (
                 <div className="w-full h-full bg-indigo-500/20 flex items-center justify-center text-indigo-400 font-bold">
-                  {mockUser.name.charAt(0)}
+                  {displayUser.name.charAt(0)}
                 </div>
               )}
             </div>
-            <span className="font-medium text-zinc-100 tracking-tight">{mockUser.name}</span>
+            <span className="font-medium text-zinc-100 tracking-tight">{displayUser.name}</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-2">
@@ -83,9 +91,9 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           </nav>
 
           <div className="flex items-center gap-4">
-            {mockUser.githubLink && (
+            {displayUser.githubLink && (
               <a
-                href={mockUser.githubLink}
+                href={displayUser.githubLink}
                 target="_blank"
                 rel="noreferrer"
                 className="text-zinc-400 hover:text-zinc-100 transition-colors"
@@ -93,9 +101,9 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
                 <Github className="w-5 h-5" />
               </a>
             )}
-            {mockUser.linkedinLink && (
+            {displayUser.linkedinLink && (
               <a
-                href={mockUser.linkedinLink}
+                href={displayUser.linkedinLink}
                 target="_blank"
                 rel="noreferrer"
                 className="text-zinc-400 hover:text-zinc-100 transition-colors"
@@ -124,12 +132,14 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         </div>
       </nav>
 
-      <main className="flex-1 pt-24 pb-24 md:pb-12 max-w-5xl mx-auto w-full px-6">
-        {children}
+      <main className="flex-1 pt-24 pb-24 md:pb-12 w-full px-6">
+        <div className="mx-auto w-full max-w-7xl">{children}</div>
       </main>
 
       <footer className="border-t border-luxe-800 py-8 text-center text-zinc-500 text-sm">
-        <p>© {new Date().getFullYear()} {mockUser.name}. All rights reserved.</p>
+        <div className="mx-auto w-full max-w-7xl px-6">
+          <p>© {new Date().getFullYear()} {displayUser.name}. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );

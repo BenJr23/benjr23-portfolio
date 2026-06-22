@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { MainLayout } from "./components/MainLayout";
+import { getUserByEnvCode } from "./_actions/home/getuser";
+import { mockUser } from "./lib/mock";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,18 +21,20 @@ export const metadata: Metadata = {
     "A modern portfolio site migrated from a React UI into Next.js.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUserByEnvCode().catch(() => null);
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-luxe-950 text-zinc-100">
-        <MainLayout>{children}</MainLayout>
+        <MainLayout user={user ?? mockUser}>{children}</MainLayout>
       </body>
     </html>
   );
