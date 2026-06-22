@@ -13,7 +13,11 @@ export async function getProjects() {
       createdBy: user.id,
     },
     include: {
-      framework: true,
+      framework: {
+        include: {
+          tools: true,
+        },
+      },
     },
     orderBy: {
       createdAt: "desc",

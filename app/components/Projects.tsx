@@ -137,14 +137,34 @@ export function Projects({ projects, frameworks }: ProjectsProps) {
                     )}
 
                     {framework && (
-                      <div className="flex items-center gap-2 pt-4 border-t border-luxe-800">
-                        <span className="text-xs text-zinc-500">Built with</span>
-                        <div className="flex items-center gap-1.5 text-sm font-medium text-zinc-300">
-                          {framework.image && (
-                            <img src={framework.image} alt={framework.name} className="w-4 h-4" />
-                          )}
-                          {framework.name}
+                      <div className="flex flex-col gap-3 pt-4 border-t border-luxe-800">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-zinc-500">Built with</span>
+                          <div className="flex items-center gap-1.5 text-sm font-medium text-zinc-300">
+                            {framework.image && (
+                              <img src={framework.image} alt={framework.name} className="w-4 h-4" />
+                            )}
+                            {framework.name}
+                          </div>
                         </div>
+                        {framework.tools && framework.tools.length > 0 && (
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs text-zinc-500">Tools</span>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              {framework.tools.map((tool: any) => (
+                                <div key={tool.id} className="group/tool relative" title={tool.name}>
+                                  {tool.picture && (
+                                    <img 
+                                      src={tool.picture} 
+                                      alt={tool.name} 
+                                      className="w-5 h-5 object-contain opacity-60 group-hover/tool:opacity-100 transition-opacity"
+                                    />
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
                   </div>
