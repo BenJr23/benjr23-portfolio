@@ -12,16 +12,23 @@ import {
 } from "lucide-react";
 import { mockTools, mockFrameworks, ToolCategory } from "../lib/mock";
 
-export function Skills() {
-  const toolsByCategory = mockTools.reduce((acc, tool) => {
-    if (!acc[tool.category]) {
-      acc[tool.category] = [];
-    }
-    acc[tool.category].push(tool);
-    return acc;
-  }, {} as Record<ToolCategory, typeof mockTools>);
+interface SkillsProps {
+  tools?: any[];
+  frameworks?: any[];
+}
 
-  const getCategoryIcon = (category: ToolCategory) => {
+export function Skills({ tools, frameworks }: SkillsProps) {
+  const toolsList = tools ?? mockTools;
+  const frameworksList = frameworks ?? mockFrameworks;
+
+  const toolsByCategory = toolsList.reduce((acc: Record<string, any[]>, tool: any) => {
+    const key = String(tool.category);
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(tool);
+    return acc;
+  }, {} as Record<string, any[]>);
+
+  const getCategoryIcon = (category: string | ToolCategory) => {
     switch (category) {
       case ToolCategory.FRONTEND:
       case ToolCategory.UI_TOOLKIT:
@@ -66,7 +73,7 @@ export function Skills() {
             Core Frameworks
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {mockFrameworks.map((fw, idx) => (
+            {frameworksList.map((fw, idx) => (
               <motion.div
                 key={fw.id}
                 initial={{ opacity: 0, y: 10 }}
