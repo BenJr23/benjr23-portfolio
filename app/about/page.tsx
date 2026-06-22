@@ -1,6 +1,7 @@
 import { About } from "../components/About";
 import { getAboutMe } from "../_actions/about/getaboutme";
-import { mockAboutMe, AboutMeCategory } from "../lib/mock";
+import { getUserByEnvCode } from "../_actions/home/getuser";
+import { mockAboutMe, AboutMeCategory, mockUser } from "../lib/mock";
 
 const narrativeCategories = [
   AboutMeCategory.PERSONAL_BACKGROUND,
@@ -11,9 +12,12 @@ const narrativeCategories = [
 ];
 
 export default async function AboutPage() {
-  const aboutEntries = await getAboutMe().catch(() => {
-    return mockAboutMe.filter((entry) => narrativeCategories.includes(entry.category));
-  });
+  const [aboutEntries, user] = await Promise.all([
+    getAboutMe().catch(() => {
+      return mockAboutMe.filter((entry) => narrativeCategories.includes(entry.category));
+    }),
+    getUserByEnvCode().catch(() => null),
+  ]);
 
-  return <About aboutMeEntries={aboutEntries} />;
+  return <About aboutMeEntries={aboutEntries} user={user ?? mockUser} />;
 }
