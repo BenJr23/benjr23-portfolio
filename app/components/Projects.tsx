@@ -137,30 +137,38 @@ export function Projects({ projects, frameworks }: ProjectsProps) {
                     )}
 
                     {framework && (
-                      <div className="flex flex-col gap-3 pt-4 border-t border-luxe-800">
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs text-zinc-500">Built with</span>
-                          <div className="flex items-center gap-1.5 text-sm font-medium text-zinc-300">
-                            {framework.image && (
-                              <img src={framework.image} alt={framework.name} className="w-4 h-4" />
-                            )}
-                            {framework.name}
-                          </div>
+                      <div className="space-y-3 pt-4 border-t border-luxe-800">
+                        {/* Framework Section */}
+                        <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-gradient-to-r from-indigo-500/5 to-purple-500/5 border border-indigo-500/10">
+                          {framework.image && (
+                            <img src={framework.image} alt={framework.name} className="w-5 h-5" />
+                          )}
+                          <span className="text-xs text-zinc-400 font-medium">Framework</span>
+                          <span className="text-sm font-semibold text-zinc-200">{framework.name}</span>
                         </div>
+
+                        {/* Tech Stack Section */}
                         {framework.tools && framework.tools.length > 0 && (
-                          <div className="flex items-center gap-2">
-                            <span className="text-xs text-zinc-500">Tools</span>
-                            <div className="flex items-center gap-2 flex-wrap">
+                          <div className="space-y-2">
+                            <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Tech Stack</span>
+                            <div className="flex flex-wrap gap-2">
                               {framework.tools.map((tool: any) => (
-                                <div key={tool.id} className="group/tool relative" title={tool.name}>
-                                  {tool.picture && (
-                                    <img 
-                                      src={tool.picture} 
-                                      alt={tool.name} 
-                                      className="w-5 h-5 object-contain opacity-60 group-hover/tool:opacity-100 transition-opacity"
-                                    />
-                                  )}
-                                </div>
+                                <motion.div
+                                  key={tool.id}
+                                  whileHover={{ scale: 1.1, y: -2 }}
+                                  className="group/tool cursor-pointer"
+                                >
+                                  <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-gradient-to-br from-zinc-800 to-zinc-900 border border-zinc-700/50 hover:border-indigo-500/50 transition-all duration-200 hover:shadow-[0_0_12px_rgba(99,102,241,0.2)]">
+                                    {tool.picture && (
+                                      <img 
+                                        src={tool.picture} 
+                                        alt={tool.name} 
+                                        className="w-4 h-4 object-contain group-hover/tool:brightness-125 transition-all"
+                                      />
+                                    )}
+                                    <span className="text-xs font-medium text-zinc-300 group-hover/tool:text-indigo-300 transition-colors">{tool.name}</span>
+                                  </div>
+                                </motion.div>
                               ))}
                             </div>
                           </div>
