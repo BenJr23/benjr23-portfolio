@@ -2,9 +2,19 @@
 import { motion } from "framer-motion";
 import { User, Lightbulb, Target, Zap, BookOpen } from "lucide-react";
 import { mockAboutMe, AboutMeCategory } from "../lib/mock";
+import type { AboutMe } from "../lib/mock";
+import type { AboutMeCategory as PrismaAboutMeCategory } from "../generated/prisma/enums";
 
-export function About() {
-  const narrativeCategories = [
+type AboutMeEntry = Omit<AboutMe, "category"> & {
+  category: AboutMeCategory | PrismaAboutMeCategory;
+};
+
+interface AboutProps {
+  aboutMeEntries?: AboutMeEntry[];
+}
+
+export function About({ aboutMeEntries }: AboutProps) {
+  const narrativeCategories: Array<AboutMeCategory | PrismaAboutMeCategory> = [
     AboutMeCategory.PERSONAL_BACKGROUND,
     AboutMeCategory.WORK_PHILOSOPHY,
     AboutMeCategory.TECHNICAL_EXPERTISE,
@@ -12,9 +22,11 @@ export function About() {
     AboutMeCategory.CONTINUOUS_LEARNING,
   ];
 
-  const narrativeEntries = mockAboutMe.filter((entry) => narrativeCategories.includes(entry.category));
+  const narrativeEntries = (aboutMeEntries ?? mockAboutMe).filter((entry) =>
+    narrativeCategories.includes(entry.category as AboutMeCategory | PrismaAboutMeCategory),
+  );
 
-  const getCategoryIcon = (category: AboutMeCategory) => {
+  const getCategoryIcon = (category: AboutMeCategory | PrismaAboutMeCategory) => {
     switch (category) {
       case AboutMeCategory.PERSONAL_BACKGROUND:
         return <User className="w-6 h-6" />;
