@@ -4,7 +4,13 @@ import { format } from "date-fns";
 import { Award, Calendar } from "lucide-react";
 import { mockCertifications } from "../lib/mock";
 
-export function Certifications() {
+interface CertificationsProps {
+  certifications?: any[];
+}
+
+export function Certifications({ certifications }: CertificationsProps) {
+  const items = certifications ?? mockCertifications;
+
   return (
     <div className="space-y-12">
       <header className="space-y-4">
@@ -15,7 +21,7 @@ export function Certifications() {
       </header>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {mockCertifications.map((cert, idx) => (
+        {items.map((cert, idx) => (
           <motion.article
             key={cert.id}
             initial={{ opacity: 0, y: 20 }}
@@ -35,7 +41,7 @@ export function Certifications() {
                 <h3 className="text-lg font-bold text-zinc-100 leading-tight mb-2">{cert.name}</h3>
                 <div className="flex items-center gap-1.5 text-sm text-zinc-500">
                   <Calendar className="w-4 h-4" />
-                  Issued {format(cert.dateIssued, "MMMM yyyy")}
+                  Issued {format(new Date(cert.dateIssued), "MMMM yyyy")}
                 </div>
               </div>
             </div>
