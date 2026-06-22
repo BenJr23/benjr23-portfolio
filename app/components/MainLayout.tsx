@@ -115,24 +115,24 @@ export function MainLayout({
         </div>
       </header>
 
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 glass-panel">
-        <div className="flex items-center justify-around px-3 py-2">
+      <nav className="md:hidden fixed top-16 left-0 right-0 z-50 glass-panel border-t border-luxe-800/20">
+        <div className="flex items-center justify-between gap-1 px-2 py-2">
           {navItems.map((item) => (
             <Link
               key={item.path}
               href={item.path}
-              className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-colors ${
+              className={`flex-1 min-w-0 basis-0 flex flex-col items-center gap-1 px-1.5 py-2 rounded-xl transition-colors ${
                 isActive(item.path) ? "text-indigo-400 bg-indigo-500/10" : "text-zinc-400"
               }`}
             >
               <item.icon className="w-5 h-5" />
-              <span className="text-[10px] font-medium">{item.label}</span>
+              <span className="text-[10px] leading-none font-medium truncate">{item.label}</span>
             </Link>
           ))}
         </div>
       </nav>
 
-      <main className="flex-1 pt-24 pb-24 md:pb-12 w-full px-6">
+      <main className="flex-1 pt-40 pb-12 md:pt-24 md:pb-12 w-full px-6">
         <div className="mx-auto w-full max-w-7xl">{children}</div>
       </main>
 
