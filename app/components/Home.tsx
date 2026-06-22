@@ -60,9 +60,9 @@ export function Home({ user }: { user?: User | null }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="grid gap-4 md:grid-cols-[minmax(320px,380px)_minmax(240px,1fr)_minmax(240px,1fr)]"
+            className="grid gap-4 md:grid-cols-[minmax(280px,340px)_minmax(200px,1fr)_minmax(200px,1fr)]"
           >
-            <div className="relative rounded-2xl overflow-hidden glass-card h-[480px] md:h-[680px]">
+            <div className="relative rounded-2xl overflow-hidden glass-card h-[400px] md:h-[560px]">
               <img
                 src={displayUser.photos[0]}
                 alt="In action 1"
@@ -74,7 +74,7 @@ export function Home({ user }: { user?: User | null }) {
               {displayUser.photos.slice(1, 3).map((photo, idx) => (
                 <div
                   key={`left-${idx}`}
-                  className="relative rounded-2xl overflow-hidden glass-card h-[220px] md:h-[336px]"
+                  className="relative rounded-2xl overflow-hidden glass-card h-[180px] md:h-[268px]"
                 >
                   <img
                     src={photo}
@@ -89,7 +89,7 @@ export function Home({ user }: { user?: User | null }) {
               {displayUser.photos.slice(3, 5).map((photo, idx) => (
                 <div
                   key={`right-${idx}`}
-                  className="relative rounded-2xl overflow-hidden glass-card h-[220px] md:h-[336px]"
+                  className="relative rounded-2xl overflow-hidden glass-card h-[180px] md:h-[268px]"
                 >
                   <img
                     src={photo}
