@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { User, Lightbulb, Target, Zap, BookOpen, MapPin, Mail, Phone, Linkedin, Github } from "lucide-react";
+import { User as UserIcon, Lightbulb, Target, Zap, BookOpen, MapPin, Mail, Phone, Linkedin, Github } from "lucide-react";
 import Link from "next/link";
 import { mockAboutMe, AboutMeCategory, mockUser } from "../lib/mock";
 import type { AboutMe, User as AppUser } from "../lib/mock";
@@ -32,7 +32,7 @@ export function About({ aboutMeEntries, user }: AboutProps) {
   const getCategoryIcon = (category: AboutMeCategory | PrismaAboutMeCategory) => {
     switch (category) {
       case AboutMeCategory.PERSONAL_BACKGROUND:
-        return <User className="w-6 h-6" />;
+        return <UserIcon className="w-6 h-6" />;
       case AboutMeCategory.WORK_PHILOSOPHY:
         return <Lightbulb className="w-6 h-6" />;
       case AboutMeCategory.TECHNICAL_EXPERTISE:
@@ -42,7 +42,7 @@ export function About({ aboutMeEntries, user }: AboutProps) {
       case AboutMeCategory.CONTINUOUS_LEARNING:
         return <BookOpen className="w-6 h-6" />;
       default:
-        return <User className="w-6 h-6" />;
+        return <UserIcon className="w-6 h-6" />;
     }
   };
 
