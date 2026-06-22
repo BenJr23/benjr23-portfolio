@@ -4,20 +4,24 @@ import { format } from "date-fns";
 import { Briefcase, GraduationCap, Star, BookOpen } from "lucide-react";
 import { mockAboutMe, AboutMeCategory } from "../lib/mock";
 
-export function Experience() {
-  const timelineEntries = mockAboutMe.filter(
+interface ExperienceProps {
+  aboutEntries?: any[];
+}
+
+export function Experience({ aboutEntries }: ExperienceProps) {
+  const timelineEntries = (aboutEntries ?? mockAboutMe).filter(
     (entry) =>
-      entry.category === AboutMeCategory.WORK_EXPERIENCE ||
-      entry.category === AboutMeCategory.EDUCATIONAL_BACKGROUND
+      String(entry.category) === AboutMeCategory.WORK_EXPERIENCE ||
+      String(entry.category) === AboutMeCategory.EDUCATIONAL_BACKGROUND,
   );
 
   const sortedEntries = [...timelineEntries].sort((a, b) => {
-    const dateA = a.startDate || a.createdAt;
-    const dateB = b.startDate || b.createdAt;
+    const dateA = a.startDate ? new Date(a.startDate) : new Date(a.createdAt);
+    const dateB = b.startDate ? new Date(b.startDate) : new Date(b.createdAt);
     return dateB.getTime() - dateA.getTime();
   });
 
-  const getCategoryIcon = (category: AboutMeCategory) => {
+  const getCategoryIcon = (category: string) => {
     switch (category) {
       case AboutMeCategory.WORK_EXPERIENCE:
         return <Briefcase className="w-5 h-5" />;
