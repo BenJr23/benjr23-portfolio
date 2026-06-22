@@ -8,7 +8,7 @@ import {
   Wrench,
   Briefcase,
   Award,
-  User,
+  User as UserIcon,
   Github,
   Linkedin,
 } from "lucide-react";
@@ -17,7 +17,7 @@ import type { User } from "../lib/mock";
 
 const navItems = [
   { path: "/", label: "Home", icon: HomeIcon },
-  { path: "/about", label: "About", icon: User },
+  { path: "/about", label: "About", icon: UserIcon },
   { path: "/projects", label: "Projects", icon: FolderGit2 },
   { path: "/experience", label: "Experience", icon: Briefcase },
   { path: "/skills", label: "Skills", icon: Wrench },
