@@ -15,11 +15,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Alex Chen Portfolio",
-  description:
-    "A modern portfolio site migrated from a React UI into Next.js.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { getUserByEnvCode } = await import("./_actions/home/getuser");
+  const { mockUser } = await import("./lib/mock");
+
+  const user = await getUserByEnvCode().catch(() => null);
+
+  const name = user?.name ?? mockUser.name ?? "Portfolio";
+
+  return {
+    title: `${name} Portfolio`,
+    description: "A modern portfolio site migrated from a React UI into Next.js.",
+  };
+}
 
 export default async function RootLayout({
   children,

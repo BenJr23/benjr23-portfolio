@@ -27,7 +27,7 @@ export function Home({ user }: { user?: User | null }) {
               <div className="space-y-6">
                 <div>
                   <h1 className="text-4xl md:text-6xl font-bold text-zinc-100 tracking-tight mb-6 leading-tight">
-                    Hi, I&apos;m {displayUser.name.split(" ")[0]}. <br className="hidden md:block" />
+                    Hi, I&apos;m {displayUser.name.split(" ")[0]} {displayUser.name.split(" ")[1]}. <br className="hidden md:block" />
                     <span className="text-zinc-500">I build digital experiences.</span>
                   </h1>
                 </div>
