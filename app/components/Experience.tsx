@@ -70,7 +70,10 @@ export function Experience({ aboutEntries }: ExperienceProps) {
                   <div>
                     <h3 className="text-xl font-bold text-zinc-100 mb-1">{entry.title}</h3>
                     <span className="inline-block px-2.5 py-1 rounded-md bg-luxe-800 text-xs font-medium text-zinc-400">
-                      {entry.category.split("_").map((w) => w.charAt(0) + w.slice(1).toLowerCase()).join(" ")}
+                      {String(entry.category)
+                        .split("_")
+                        .map((w: string) => w.charAt(0) + w.slice(1).toLowerCase())
+                        .join(" ")}
                     </span>
                   </div>
                   <div className="text-sm font-medium text-indigo-400 whitespace-nowrap bg-indigo-500/10 px-3 py-1.5 rounded-lg border border-indigo-500/20">
