@@ -38,7 +38,7 @@ export function MainLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="fixed top-0 left-0 right-0 z-50 glass-panel">
+      <header className="fixed top-0 left-0 right-0 z-50 glass-panel bg-slate-950/95 border-b border-luxe-800">
         <div className="mx-auto w-full max-w-7xl px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full overflow-hidden border border-luxe-800">
@@ -115,7 +115,7 @@ export function MainLayout({
         </div>
       </header>
 
-      <nav className="md:hidden fixed top-16 left-0 right-0 z-50 glass-panel border-t border-luxe-800/20">
+      <nav className="md:hidden fixed top-16 left-0 right-0 z-50 glass-panel bg-slate-950/95 border-t border-luxe-800">
         <div className="flex items-center justify-between gap-1 px-2 py-2">
           {navItems.map((item) => (
             <Link
