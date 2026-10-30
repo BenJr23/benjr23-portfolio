@@ -32,17 +32,17 @@ export function About({ aboutMeEntries, user }: AboutProps) {
   const getCategoryIcon = (category: AboutMeCategory | PrismaAboutMeCategory) => {
     switch (category) {
       case AboutMeCategory.PERSONAL_BACKGROUND:
-        return <UserIcon className="w-6 h-6" />;
+        return <UserIcon className="w-6 h-6 shrink-0" />;
       case AboutMeCategory.WORK_PHILOSOPHY:
-        return <Lightbulb className="w-6 h-6" />;
+        return <Lightbulb className="w-6 h-6 shrink-0" />;
       case AboutMeCategory.TECHNICAL_EXPERTISE:
-        return <Zap className="w-6 h-6" />;
+        return <Zap className="w-6 h-6 shrink-0" />;
       case AboutMeCategory.CAREER_HIGHLIGHTS:
-        return <Target className="w-6 h-6" />;
+        return <Target className="w-6 h-6 shrink-0" />;
       case AboutMeCategory.CONTINUOUS_LEARNING:
-        return <BookOpen className="w-6 h-6" />;
+        return <BookOpen className="w-6 h-6 shrink-0" />;
       default:
-        return <UserIcon className="w-6 h-6" />;
+        return <UserIcon className="w-6 h-6 shrink-0" />;
     }
   };
 
@@ -80,21 +80,21 @@ export function About({ aboutMeEntries, user }: AboutProps) {
 
           <div className="space-y-4">
             <div className="flex items-center gap-3 text-zinc-400">
-              <MapPin className="w-5 h-5 text-indigo-400" />
-              <span>{aboutUser.address ?? "Location unavailable"}</span>
+              <MapPin className="w-5 h-5 shrink-0 text-indigo-400" />
+              <span className="min-w-0">{aboutUser.address ?? "Location unavailable"}</span>
             </div>
             {aboutUser.email && (
               <div className="flex items-center gap-3 text-zinc-400">
-                <Mail className="w-5 h-5 text-indigo-400" />
-                <a href={`mailto:${aboutUser.email}`} className="text-zinc-200 hover:text-indigo-200 transition-colors">
+                <Mail className="w-5 h-5 shrink-0 text-indigo-400" />
+                <a href={`mailto:${aboutUser.email}`} className="min-w-0 break-all text-zinc-200 hover:text-indigo-200 transition-colors">
                   {aboutUser.email}
                 </a>
               </div>
             )}
             {aboutUser.phoneNumber && (
               <div className="flex items-center gap-3 text-zinc-400">
-                <Phone className="w-5 h-5 text-indigo-400" />
-                <a href={`tel:${aboutUser.phoneNumber}`} className="text-zinc-200 hover:text-indigo-200 transition-colors">
+                <Phone className="w-5 h-5 shrink-0 text-indigo-400" />
+                <a href={`tel:${aboutUser.phoneNumber}`} className="min-w-0 break-all text-zinc-200 hover:text-indigo-200 transition-colors">
                   {aboutUser.phoneNumber}
                 </a>
               </div>
@@ -109,7 +109,7 @@ export function About({ aboutMeEntries, user }: AboutProps) {
                 rel="noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-transparent border border-zinc-800/40 text-zinc-200 hover:bg-zinc-900 transition-colors"
               >
-                <Linkedin className="w-5 h-5 text-zinc-400" />
+                <Linkedin className="w-5 h-5 shrink-0 text-zinc-400" />
                 LinkedIn Profile
               </Link>
             )}
@@ -120,7 +120,7 @@ export function About({ aboutMeEntries, user }: AboutProps) {
                 rel="noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-transparent border border-zinc-800/40 text-zinc-200 hover:bg-zinc-900 transition-colors"
               >
-                <Github className="w-5 h-5 text-zinc-400" />
+                <Github className="w-5 h-5 shrink-0 text-zinc-400" />
                 GitHub Profile
               </Link>
             )}
@@ -139,10 +139,10 @@ export function About({ aboutMeEntries, user }: AboutProps) {
               <div className="absolute -right-20 -top-20 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl group-hover:bg-indigo-500/10 transition-colors duration-700" />
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                  <div className="w-12 h-12 shrink-0 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
                     {getCategoryIcon(entry.category)}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <h2 className="text-2xl font-bold text-zinc-100">{entry.title}</h2>
                     <span className="text-sm font-medium text-zinc-500">
                       {formatCategoryName(entry.category)}
