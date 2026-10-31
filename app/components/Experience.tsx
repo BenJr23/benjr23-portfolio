@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { Briefcase, GraduationCap, Star, BookOpen } from "lucide-react";
 import { mockAboutMe, AboutMeCategory } from "../lib/mock";
 
+
 interface ExperienceProps {
   aboutEntries?: any[];
 }
