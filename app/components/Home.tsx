@@ -5,6 +5,7 @@ import { MapPin, Mail, ArrowRight } from "lucide-react";
 import { mockUser } from "../lib/mock";
 import type { User } from "../lib/mock";
 
+
 export function Home({ user }: { user?: User | null }) {
   const displayUser = user ?? mockUser;
   return (

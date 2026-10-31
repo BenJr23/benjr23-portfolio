@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, Monitor, Smartphone, Layout as LayoutIcon } from "lucide-react";
 import { mockProjects, mockFrameworks, ProjectType } from "../lib/mock";
 
+
 interface ProjectsProps {
   projects?: any[];
   frameworks?: any[];
